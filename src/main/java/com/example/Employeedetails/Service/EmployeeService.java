@@ -14,11 +14,17 @@ public class EmployeeService {
     @Autowired
     EmoloyeeRepository repository;
 
-    // Create employee logic
+    // add single employee logic
     public EmployeeEntity createEmployee(EmployeeEntity employeeEntity)
     {
         return repository.save(employeeEntity);
 
+    }
+
+    // add multiple employee logic
+    public List<EmployeeEntity> createAllEmployee(List<EmployeeEntity> employeeEntities)
+    {
+        return  repository.saveAll(employeeEntities);
     }
 
     // Get all employees
