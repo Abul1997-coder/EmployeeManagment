@@ -1,12 +1,14 @@
 package com.example.Employeedetails.Service;
 
 
+import com.example.Employeedetails.CustomeException.EmployeeNotFoundException;
 import com.example.Employeedetails.Model.EmployeeEntity;
 import com.example.Employeedetails.Repository.EmoloyeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service // Business logic layer
 public class EmployeeService {
@@ -33,6 +35,22 @@ public class EmployeeService {
         return repository.findAll ();
 
     }
+
+    //Get Employee by id
+
+
+    public List<EmployeeEntity> getByEmployoeeId(Long id)
+    {
+        List<EmployeeEntity> emplyee =repository.findAllById(id);
+        if(emplyee.isEmpty())
+        {
+            throw new EmployeeNotFoundException(id);
+        }
+        return emplyee;
+
+    }
+
+
 
 
 }

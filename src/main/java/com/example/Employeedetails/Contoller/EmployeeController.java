@@ -32,10 +32,19 @@ public class EmployeeController {
         List<EmployeeEntity> save = service.createAllEmployee(employeeEntities);
         return ResponseEntity.ok(save);
     }
-
+    //  POST /api/employee/all (Get all employees)
     @GetMapping("/all")
-    public List<EmployeeEntity> getAllEmployee() {
+    public List<EmployeeEntity> getAllEmployee()
+    {
         return service.getAllEmployees();
+    }
+
+    // Get employee by ID
+    @GetMapping("/{id}")
+    public ResponseEntity<List<EmployeeEntity>> getEmployeeByid(@PathVariable Long id)
+    {
+        List<EmployeeEntity> employee = service.getByEmployoeeId(id);
+        return ResponseEntity.ok(employee);
     }
 
 }
