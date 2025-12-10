@@ -33,6 +33,7 @@ public class EmployeeController {
         return ResponseEntity.ok(save);
     }
     //  POST /api/employee/all (Get all employees)
+    //http://localhost:8081/api/employee/all
     @GetMapping("/all")
     public List<EmployeeEntity> getAllEmployee()
     {
@@ -45,6 +46,14 @@ public class EmployeeController {
     {
         List<EmployeeEntity> employee = service.getByEmployoeeId(id);
         return ResponseEntity.ok(employee);
+    }
+
+
+    @DeleteMapping("/{id}")
+    public String deleteEmployee(@PathVariable Long id)
+    {
+        service.deleteEmployee(id);
+        return "Employee deleted by id"+ id;
     }
 
 }

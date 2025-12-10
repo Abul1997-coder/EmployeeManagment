@@ -44,12 +44,21 @@ public class EmployeeService {
         List<EmployeeEntity> emplyee =repository.findAllById(id);
         if(emplyee.isEmpty())
         {
-            throw new EmployeeNotFoundException(id);
+            throw new EmployeeNotFoundException("Employee not found"+id);
         }
         return emplyee;
 
     }
 
+
+    public void deleteEmployee(Long id) throws EmployeeNotFoundException {
+        if(repository.existsById(id))
+        {
+            repository.deleteById(id);
+        }
+        else
+            throw new EmployeeNotFoundException("Employee not found" + id);
+    }
 
 
 
