@@ -51,6 +51,27 @@ public class EmployeeService {
     }
 
 
+    //update the record by id
+    public EmployeeEntity updateEmployee(Long id, EmployeeEntity updateEmployee)
+    {
+        Optional<EmployeeEntity> optionalEmployeeEntity = repository.findById(id);
+        if(optionalEmployeeEntity.isPresent()) {
+            EmployeeEntity exiting = optionalEmployeeEntity.get();
+            exiting.setName(updateEmployee.getName());
+            exiting.setAddress(updateEmployee.getAddress());
+            exiting.setSalary(updateEmployee.getSalary());
+            return repository.save(exiting);
+        }
+        else
+        {
+            throw new EmployeeNotFoundException("Not update Emloyee notFound"+id);
+        }
+    }
+
+
+
+
+    //Delete the record by Id
     public void deleteEmployee(Long id) throws EmployeeNotFoundException {
         if(repository.existsById(id))
         {
@@ -59,6 +80,9 @@ public class EmployeeService {
         else
             throw new EmployeeNotFoundException("Employee not found" + id);
     }
+
+
+
 
 
 

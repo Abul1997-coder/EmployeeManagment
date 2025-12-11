@@ -48,7 +48,16 @@ public class EmployeeController {
         return ResponseEntity.ok(employee);
     }
 
+  //Update Employee by id
+    @PutMapping("/{id}")
+  public EmployeeEntity updateEmployee(@PathVariable Long id,@RequestBody EmployeeEntity employeeEntity)
+  {
+      return service.updateEmployee(id,employeeEntity);
+  }
 
+
+//delete Employee by id
+//http://localhost:8081/api/employee/8
     @DeleteMapping("/{id}")
     public String deleteEmployee(@PathVariable Long id)
     {
